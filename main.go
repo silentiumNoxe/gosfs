@@ -18,12 +18,16 @@ func main() {
 	engine.Use(static.Serve("/", dir))
 	engine.NoRoute(notFound(dir))
 
-	for endpoint, file := range config.Default.Route {
+	var serve = func(endpoint, file string) {
 		engine.GET(
 			endpoint, func(c *gin.Context) {
 				c.FileFromFS(file, dir)
 			},
 		)
+	}
+
+	for endpoint, file := range config.Default.Route {
+		serve(endpoint, file)
 	}
 
 	log.Println("Start server on " + config.Default.GetAddr())
@@ -43,7 +47,7 @@ func notFound(dir http.FileSystem) gin.HandlerFunc {
 }
 
 func init() {
-	gin.SetMode(gin.ReleaseMode)
+	//gin.SetMode(gin.ReleaseMode)
 	gin.DisableConsoleColor()
 }
 
