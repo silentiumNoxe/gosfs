@@ -47,7 +47,7 @@ func notFound(dir http.FileSystem) gin.HandlerFunc {
 }
 
 func init() {
-	//gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.ReleaseMode)
 	gin.DisableConsoleColor()
 }
 
