@@ -8,4 +8,4 @@ COPY ./gosfs.json .
 
 EXPOSE 8080
 
-ENTRYPOINT ["/app/buffalo"]
+ENTRYPOINT ["/app/gosfs"]
