@@ -19,7 +19,11 @@ func main() {
 	engine.NoRoute(notFound(dir))
 
 	for endpoint, file := range config.Default.Route {
-		engine.StaticFileFS(endpoint, file, dir)
+		engine.GET(
+			endpoint, func(c *gin.Context) {
+				c.FileFromFS(file, dir)
+			},
+		)
 	}
 
 	log.Println("Start server on " + config.Default.GetAddr())
