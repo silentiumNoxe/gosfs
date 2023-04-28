@@ -40,10 +40,11 @@ func notFound(dir http.FileSystem) gin.HandlerFunc {
 
 func init() {
 	gin.SetMode(gin.ReleaseMode)
+	gin.DisableConsoleColor()
 }
 
 func init() {
-	payload, err := os.ReadFile("buffalo.json")
+	payload, err := os.ReadFile("gosfs.json")
 	if err != nil {
 		log.Println("Config file not found. Used default configuration")
 		return
